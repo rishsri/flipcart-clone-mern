@@ -2,6 +2,7 @@ import React from 'react'
 import {Box,Button,makeStyles,Typography} from '@material-ui/core'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
+import {Link} from "react-router-dom";
 
 const useStyle = makeStyles({
     login: {
@@ -19,7 +20,9 @@ const useStyle = makeStyles({
         //this is for apply css from parient class to child class
         '& > *' : {
             marginRight: 50,
-            alignItems: 'center'
+            alignItems: 'center',
+            textDecoration: 'none',
+            color: '#FFFFFF',
         }
     },
 
@@ -33,14 +36,14 @@ const CustomButtons = () => {
     const classes = useStyle();
     return (
         <Box className = {classes.wrapper}>
-            <Button variant= "contained" className = {classes.login}>Login</Button>
-            <Typography style={{marginTop: 5}} >More</Typography>
-            <Box className = {classes.container}>
+           <Link> <Button variant= "contained" className = {classes.login}>Login</Button></Link>
+            <Link><Typography style={{marginTop: 5}} >More</Typography></Link>
+            <Link to = "/cart" className = {classes.container}>
             <Badge badgeContent={4} color="secondary">
             <ShoppingCartIcon/>
       </Badge>
                  <Typography style = {{marginLeft: 10}}>Cart</Typography>
-            </Box>
+            </Link>
         </Box>
     )
 }
