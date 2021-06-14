@@ -5,6 +5,7 @@ import { Box, makeStyles } from "@material-ui/core";
 import NavBar from "./NavBar";
 import Banner from "./Banner";
 import Slide from "./Slide";
+import MidSection from "./MidSection"
 
 const useStyles = makeStyles({
   component: {
@@ -35,6 +36,7 @@ const Home = () => {
             <img src = {adURL} alt = "" style = {{width: 230}} />
           </Box>
         </Box>
+        <MidSection/>
         <Slide title = "Discounts for you" timer = {false} />
         <Slide title = "Suggested Items" timer = {false}/>
         <Slide title = "Top Selection" timer = {false}/>
