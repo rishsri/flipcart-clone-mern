@@ -85,41 +85,58 @@ const useStyle = makeStyles({
 
 const initialValue = {
   login: {
-      view: 'login',
-      heading: 'Login',
-      subHeading: " Get access to your Orders, Wishlist and Recommendations"
+    view: "login",
+    heading: "Login",
+    subHeading: " Get access to your Orders, Wishlist and Recommendations",
   },
   signup: {
-    view: 'signup',
+    view: "signup",
     heading: "Looks like you're new here",
-    subHeading: 'Signup to get started'
-}
-}
+    subHeading: "Signup to get started",
+  },
+};
 
 const LoginDialog = ({ open, setOpen }) => {
   const classes = useStyle();
 
+  const signupInitialValue = {
+    firstname: "",
+    lastname: "",
+    username: "",
+    password: "",
+    email: "",
+    phone: "",
+  };
+
   const [account, setAccount] = useState(initialValue.login);
+  const [signup, setSignup] = useState(signupInitialValue);
 
   const toggleAccountFunction = () => {
-    setAccount(initialValue.signup)
-  }
+    setAccount(initialValue.signup);
+  };
 
-  const  toggleAccountLoginFunction = () => {
-    setAccount(initialValue.login)
-  }
+  const toggleAccountLoginFunction = () => {
+    setAccount(initialValue.login);
+  };
 
   const handleClose = () => {
     setOpen(false);
-    setAccount(initialValue.login)
+    setAccount(initialValue.login);
   };
 
-  const signupUser = async() => {
-    let response = await authenticateSignup();
+  const handleChange = (e) => {
+    setSignup({ ...signup, [e.target.name]: e.target.value });
+
+  };
+
+  // if we want to represent a key in a form of value then we use [] to represnt it
+
+  const signupUser = async () => {
+    let response = await authenticateSignup(signup);
     //if the user does not succesfully signup then we will throw a undefiend
-    if(!response) return;
+    if (!response) return;
     handleClose();
-  }
+  };
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -142,27 +159,61 @@ const LoginDialog = ({ open, setOpen }) => {
               </Typography>
               <Button className={classes.loginbtn}>Login</Button>
               <Typography
-                className={classes.text} 
+                className={classes.text}
                 style={{ textAlign: "center" }}
               >
                 OR
               </Typography>
               <Button className={classes.requestbtn}>Request OTP</Button>
-              <Typography className={classes.createText} onClick  = {toggleAccountFunction}>
+              <Typography
+                className={classes.createText}
+                onClick={toggleAccountFunction}
+              >
                 New to Flipkart? Create an account
               </Typography>
             </Box>
           ) : (
             <Box className={classes.login}>
-            <TextField  name='firstname' label='Enter Firstname' />
-            <TextField  name='lastname' label='Enter Lastname' />
-            <TextField  name='username' label='Enter Username' />
-            <TextField  name='email' label='Enter Email' />
-            <TextField  name='password' label='Enter Password' />
-            <TextField  name='phone' label='Enter Phone' />
-            <Button className={classes.loginbtn} onClick = {() => signupUser()}>Signup</Button>
-            <Button className={classes.requestbtn} onClick = {toggleAccountLoginFunction}>Existing User? Log in </Button>
-        </Box>
+              <TextField
+                onChange={(e) => handleChange(e)}
+                name="firstname"
+                label="Enter Firstname"
+              />
+              <TextField
+                onChange={(e) => handleChange(e)}
+                name="lastname"
+                label="Enter Lastname"
+              />
+              <TextField
+                onChange={(e) => handleChange(e)}
+                name="username"
+                label="Enter Username"
+              />
+              <TextField
+                onChange={(e) => handleChange(e)}
+                name="email"
+                label="Enter Email"
+              />
+              <TextField
+                onChange={(e) => handleChange(e)}
+                name="password"
+                label="Enter Password"
+              />
+              <TextField
+                onChange={(e) => handleChange(e)}
+                name="phone"
+                label="Enter Phone"
+              />
+              <Button className={classes.loginbtn} onClick={() => signupUser()}>
+                Signup
+              </Button>
+              <Button
+                className={classes.requestbtn}
+                onClick={toggleAccountLoginFunction}
+              >
+                Existing User? Log in{" "}
+              </Button>
+            </Box>
           )}
         </Box>
       </DialogContent>

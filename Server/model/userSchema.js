@@ -1,12 +1,10 @@
 import mongoose from 'mongoose';
 
-
-
 const userSchema = new mongoose.Schema({
     firstname: {
         type: String,
         required: true,
-        trim : true,
+        trim: true,
         min: 5,
         max: 20
     },
@@ -39,8 +37,11 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: String
     }
-})
+});
 
 const user = mongoose.model('user', userSchema);
 
+mongoose.set('useCreateIndex', true);
+
 export default user;
+
