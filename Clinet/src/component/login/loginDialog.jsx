@@ -9,6 +9,8 @@ import {
   Typography,
 } from "@material-ui/core";
 
+import { authenticateSignup } from "../../service/api";
+
 const useStyle = makeStyles({
   component: {
     height: "83vh",
@@ -112,6 +114,13 @@ const LoginDialog = ({ open, setOpen }) => {
     setAccount(initialValue.login)
   };
 
+  const signupUser = async() => {
+    let response = await authenticateSignup();
+    //if the user does not succesfully signup then we will throw a undefiend
+    if(!response) return;
+    handleClose();
+  }
+
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogContent className={classes.component}>
@@ -133,7 +142,7 @@ const LoginDialog = ({ open, setOpen }) => {
               </Typography>
               <Button className={classes.loginbtn}>Login</Button>
               <Typography
-                className={classes.text}
+                className={classes.text} 
                 style={{ textAlign: "center" }}
               >
                 OR
@@ -151,7 +160,7 @@ const LoginDialog = ({ open, setOpen }) => {
             <TextField  name='email' label='Enter Email' />
             <TextField  name='password' label='Enter Password' />
             <TextField  name='phone' label='Enter Phone' />
-            <Button className={classes.loginbtn}>Continue</Button>
+            <Button className={classes.loginbtn} onClick = {() => signupUser()}>Signup</Button>
             <Button className={classes.requestbtn} onClick = {toggleAccountLoginFunction}>Existing User? Log in </Button>
         </Box>
           )}
