@@ -7,18 +7,21 @@ import Home from "./component/home/Home";
 import Cart from "./component/cart/Cart";
 import NotFoundPage from "./component/NotFoundPage";
 import TemplateProvider from "./template/TemplateProvider";
+import ContextProvider from "./context/ContextProvider";
 
 function App() {
   return (
     <TemplateProvider>
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/cart" component={Cart} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </BrowserRouter>
+      <ContextProvider>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/cart" component={Cart} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </BrowserRouter>
+      </ContextProvider>
     </TemplateProvider>
   );
 }
