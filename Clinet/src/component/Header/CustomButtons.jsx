@@ -48,7 +48,7 @@ const CustomButtons = () => {
 
   return (
     <Box className={classes.wrapper}>
-       { account ? <Typography>{account} </Typography>
+       { account ? <Profile account = {account} setAccount = {setAccount} />
        :
          <Link>
          <Button
