@@ -115,7 +115,8 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
 
   const [account, toggleAccount] = useState(initialValue.login);
   const [signup, setSignup] = useState(signupInitialValue);
-  const [login, setLogin] = useState(loginInitialvalue)
+  const [login, setLogin] = useState(loginInitialvalue);
+  const [error, setError] = useState(false);
 
   const toggleAccountFunction = () => {
     toggleAccount(initialValue.signup);
@@ -141,8 +142,12 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
 
   const loginUser = async() => {
     let response = await authenticateLogin(login);
-    if(!response) return;
+    if(!response) {
+      setError(true);
+      return;
+    } 
     handleClose();
+    
     setAccount(login.username)
   }
   // if we want to represent a key in a form of value then we use [] to represnt it
@@ -170,6 +175,7 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
             <Box className={classes.login}>
               <TextField onChange = {(e) => onValueChange(e)} name="username" label="Enter Email/Mobile number" />
               <TextField onChange = {(e) => onValueChange(e)} name="password" label="Enter Password" />
+              {error && <Typography className = {classes.error}>Invalid username and password </Typography> }
               <Typography className={classes.text}>
                 By continuing, you agree to Flipkart's Terms of Use and Privacy
                 Policy.
