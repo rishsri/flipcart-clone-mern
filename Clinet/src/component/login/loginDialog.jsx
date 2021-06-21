@@ -96,7 +96,7 @@ const initialValue = {
   },
 };
 
-const LoginDialog = ({ open, setOpen }) => {
+const LoginDialog = ({ open, setOpen, setAccount }) => {
   const classes = useStyle();
 
   const signupInitialValue = {
@@ -108,20 +108,20 @@ const LoginDialog = ({ open, setOpen }) => {
     phone: "",
   };
 
-  const [account, setAccount] = useState(initialValue.login);
+  const [account, toggleAccount] = useState(initialValue.login);
   const [signup, setSignup] = useState(signupInitialValue);
 
   const toggleAccountFunction = () => {
-    setAccount(initialValue.signup);
+    toggleAccount(initialValue.signup);
   };
 
   const toggleAccountLoginFunction = () => {
-    setAccount(initialValue.login);
+    toggleAccount(initialValue.login);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setAccount(initialValue.login);
+    toggleAccount(initialValue.login);
   };
 
   const handleChange = (e) => {
@@ -136,6 +136,7 @@ const LoginDialog = ({ open, setOpen }) => {
     //if the user does not succesfully signup then we will throw a undefiend
     if (!response) return;
     handleClose();
+    setAccount(signup.username)
   };
 
   return (

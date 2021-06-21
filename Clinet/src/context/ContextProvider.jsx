@@ -1,6 +1,6 @@
 import {createContext,useState} from 'react'
 
-const LoginContext = createContext(null)
+export const LoginContext = createContext(null)
 
 const ContextProvider = ({children}) => {
 
