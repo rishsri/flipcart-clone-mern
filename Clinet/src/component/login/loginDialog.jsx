@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import { authenticateSignup } from "../../service/api";
+import { authenticateSignup, authenticateLogin } from "../../service/api";
 
 const useStyle = makeStyles({
   component: {
@@ -108,8 +108,14 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
     phone: "",
   };
 
+  const loginInitialvalue = {
+    username: "",
+    password: ""
+  }
+
   const [account, toggleAccount] = useState(initialValue.login);
   const [signup, setSignup] = useState(signupInitialValue);
+  const [login, setLogin] = useState(loginInitialvalue)
 
   const toggleAccountFunction = () => {
     toggleAccount(initialValue.signup);
@@ -129,6 +135,16 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
 
   };
 
+  const onValueChange = (e) => {
+    setLogin({...login,[e.target.name]: e.target.value} )
+  }
+
+  const loginUser = async() => {
+    let response = await authenticateLogin(login);
+    if(!response) return;
+    handleClose();
+    setAccount(login.username)
+  }
   // if we want to represent a key in a form of value then we use [] to represnt it
 
   const signupUser = async () => {
@@ -152,13 +168,13 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
 
           {account.view === "login" ? (
             <Box className={classes.login}>
-              <TextField name="username" label="Enter Email/Mobile number" />
-              <TextField name="password" label="Enter Password" />
+              <TextField onChange = {(e) => onValueChange(e)} name="username" label="Enter Email/Mobile number" />
+              <TextField onChange = {(e) => onValueChange(e)} name="password" label="Enter Password" />
               <Typography className={classes.text}>
                 By continuing, you agree to Flipkart's Terms of Use and Privacy
                 Policy.
               </Typography>
-              <Button className={classes.loginbtn}>Login</Button>
+              <Button className={classes.loginbtn} onClick = {() => loginUser()}>Login</Button>
               <Typography
                 className={classes.text}
                 style={{ textAlign: "center" }}
