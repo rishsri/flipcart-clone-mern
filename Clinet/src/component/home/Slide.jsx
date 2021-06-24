@@ -8,7 +8,6 @@ import {
   Button,
   Divider,
 } from "@material-ui/core";
-import { products } from "../../constant/data";
 import Countdown from "react-countdown";
 
 const responsive = {
@@ -65,7 +64,7 @@ const useStyle = makeStyles({
   },
 });
 
-const Slide = ({timer, title}) => {
+const Slide = ({timer, title, products}) => {
   const classes = useStyle();
   const renderer = ({ hours, minutes, seconds }) => {
     return (
