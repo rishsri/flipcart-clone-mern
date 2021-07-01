@@ -64,7 +64,7 @@ const useStyle = makeStyles({
   },
 });
 
-const Slide = ({timer, title, products}) => {
+const Slide = ({ timer, title, products }) => {
   const classes = useStyle();
   const renderer = ({ hours, minutes, seconds }) => {
     return (
@@ -77,23 +77,28 @@ const Slide = ({timer, title, products}) => {
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
 
   return (
+    
     <Box className={classes.component}>
+      
       <Box className={classes.deal}>
         <Typography className={classes.dealText}> {title} </Typography>
-        {
-            
-            timer && 
-            <>
+        {timer && (
+          <>
             <img src={timerURL} alt="" style={{ width: 24 }} />
-        <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
-        <Button variant="contained" color="primary" className={classes.button}>
-            
-          View All
-        </Button>
-        </>
-}
+            <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              View All
+            </Button>
+          </>
+        )}
       </Box>
+      
       <Divider />
+      
       <Carousel
         responsive={responsive}
         infinite={true}
@@ -111,12 +116,13 @@ const Slide = ({timer, title, products}) => {
       >
         {products.map((product) => (
           <Box textAlign="center" className={classes.wrapper}>
-            <img src={product.url} className={classes.image} alt="" />
+             <img src={product.url} className={classes.image} alt="" />
             <Typography
               className={classes.text}
               style={{ fontWeight: 600, color: "#212121" }}
             >
               {product.title.shortTitle}
+              
             </Typography>
             <Typography className={classes.text} style={{ color: "green" }}>
               {product.discount}{" "}

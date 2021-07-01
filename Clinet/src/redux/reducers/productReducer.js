@@ -1,13 +1,12 @@
-import * as actionType from "../constants/producstConstant";
+import * as actionType from "../constants/productConstant";
 
-export const getProductsReducers = (state = {product: [] }, action) => {
+export const getProductsReducers = (state = { products: [] }, action) => {
   switch (action.type) {
     case actionType.GET_PRODUCT_SUCCESS:
-      return { product: action.payload };
+      return { products: action.payload };
     case actionType.GET_PRODUCT_FAIL:
       return { error: action.payload };
-
     default:
-      return state
+      return state;
   }
 };
