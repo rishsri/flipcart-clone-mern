@@ -12,3 +12,4 @@ export const getProductsDetailsReducers = (state = {product: {}}, action) => {
             return state;
     }
 }
+

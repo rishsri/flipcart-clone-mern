@@ -9,6 +9,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import Countdown from "react-countdown";
+import {Link} from "react-router-dom"
 
 const responsive = {
   desktop: {
@@ -115,7 +116,8 @@ const Slide = ({ timer, title, products }) => {
         containerClass="carousel-container"
       >
         {products.map((product) => (
-          <Box textAlign="center" className={classes.wrapper}>
+        <Link to  = {`product/${product.id}`}> 
+        <Box textAlign="center" className={classes.wrapper}>
              <img src={product.url} className={classes.image} alt="" />
             <Typography
               className={classes.text}
@@ -134,6 +136,7 @@ const Slide = ({ timer, title, products }) => {
               {product.tagline}{" "}
             </Typography>
           </Box>
+        </Link>
         ))}
       </Carousel>
     </Box>
