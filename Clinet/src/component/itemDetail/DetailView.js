@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProductsDetails } from "../../redux/actions/productActions";
 import clsx from "clsx";
 import ProductDetail from "./ProductDetail"
+import ActionItem from "./ActionItem";
 
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -60,7 +61,9 @@ const DetailView = ({ match }) => {
       {}
       {product && Object.keys(product).length && (
         <Box className={classes.container}>
-          <Box style={{ minWidth: "40%" }}>hello</Box>
+          <Box style={{ minWidth: "40%" }}>
+            <ActionItem product = {product}/>
+          </Box>
           <Box className={classes.rightContainer}>
             <Typography>{product.title.longTitle}</Typography>
             <Typography

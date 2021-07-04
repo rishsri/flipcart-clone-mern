@@ -19,7 +19,12 @@ const Template = ({ children }) => {
                      paddingTop: 0
                  }
              }
-         }
+         },
+         MuiTableCell: {
+            root: {
+                borderBottom: 0
+            }
+        }
      }
   });
 
