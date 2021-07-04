@@ -8,18 +8,23 @@ export const getProducts = () => async(dispatch) => {
 
     try {
         const {data} =  await axios.get(`${url}/products`);
+        
         dispatch({type: action.GET_PRODUCT_SUCCESS, payload: data})
     }catch(error){
         dispatch({type: action.GET_PRODUCT_FAIL, payload: error.response})
     }
 }
 
-
-export const getProductsDetails = (id) => async(dispatch) => {
-    try{
-        const {data} = await axios.get(`${url}/product/productid`);
-        dispatch({type: action.GET_PRODUCT_DETAIL_SUCCESS, payload: data}) 
-    }catch(error){
-        dispatch({type: action.GET_PRODUCT_DETAIL_FAIL, payload: error.response})
+export const getProductsDetails = (id) => async (dispatch) => {
+    try {
+        const { data } = await axios.get(`${url}/product/${id}`);
+        console.log("risn",data);
+        dispatch({ type: action.GET_PRODUCT_DETAIL_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({ type: action.GET_PRODUCT_DETAIL_FAIL, payload: error.response});
     }
-}
+};
+
+
+
+

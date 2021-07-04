@@ -8,7 +8,7 @@ import Cart from "./component/cart/Cart";
 import NotFoundPage from "./component/NotFoundPage";
 import TemplateProvider from "./template/TemplateProvider";
 import ContextProvider from "./context/ContextProvider";
-import DetailView from "./component/itemDetail";
+import DetailView from "./component/itemDetail/DetailView";
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/cart" component={Cart} />
-            <Route component={NotFoundPage} />
-            <Route exact path  = "/product/:id" component = {DetailView}/>
+            {/* <Route component={NotFoundPage} /> */}
+            <Route exact path = "/product/:id" component = {DetailView}/>
           </Switch>
         </BrowserRouter>
       </ContextProvider>

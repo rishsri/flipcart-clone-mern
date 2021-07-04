@@ -1,22 +1,30 @@
 
 import React, {useEffect} from 'react'
+import {Box, makeStyles} from "@material-ui/core";
 import {useSelector, useDispatch} from "react-redux";
 import { getProductsDetails } from '../../redux/actions/productActions';
 
-const DetailView = () => {
+const DetailView = ({match}) => {
 
 
- const {product} = useSelector(state=> state.getProductsDetails)
+ const { product } = useSelector(state => state.getProductsDetails)
     const dispatch = useDispatch();
 
-    useEffect ( () => {
-        dispatch(getProductsDetails())
-    },[dispatch])
+    console.log(product)
+
+    useEffect (() => {
+        dispatch(getProductsDetails(match.params.id))
+    }, [dispatch])
 
     return (
-        <div>
-            <p>hello</p>
-        </div>
+        <Box>
+            <Box>
+
+            </Box>
+            <Box>
+
+            </Box>
+        </Box>
     )
 }
 
