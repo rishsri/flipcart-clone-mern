@@ -34,10 +34,13 @@ const useStyles = makeStyles(theme =>({
 
 const ActionItem = ({product}) => {
     const classes = useStyles(); 
+    const handleClick = () => {
+        console.log("click")
+    }
     return (
         <Box className= {classes.leftContainer}>
             <img src = {product.detailUrl} alt = "" className={classes.productImage}/> <br/>
-            <Button className={clsx(classes.button, classes.addToCart)}  style={{marginRight: 10}} variant="contained"><Cart />Add to Cart</Button>
+            <Button className={clsx(classes.button, classes.addToCart)}  style={{marginRight: 10}} variant="contained" onclick = {handleClick}><Cart/>Add to Cart</Button>
             <Button className={clsx(classes.button, classes.buyNow)} variant="contained"><Flash />Buy Now</Button>
         </Box>
     )
